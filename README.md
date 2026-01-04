@@ -1,3 +1,4 @@
+# playwright-gui-typescript-wyszukiwanie_po_regon-tests
 Pojekt wykonujący testy funcjonalności wyszukiwania podmiotów na podstawie numeru wpisanego w polu REGON.
 Obejmuje: testy przypadków negtatywnych (negative test cases)
 - długość podanego numeru jest inna niż 9 lub 14
