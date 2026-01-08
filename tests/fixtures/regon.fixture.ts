@@ -1,17 +1,8 @@
-// definujemy alias dla test (base) bo później rozszerzamy go o nasze fikstury 
-// definiujemy typy dla naszych fikstur
+// Definujemy alias dla test (base) bo później rozszerzamy go o nasze fikstury 
+// następniedefiniujemy typy dla naszych fikstur
 // w tym przypadku fikstura regonPage zawiera metody do interakcji ze stroną
 // (to customowe akcje, tzw. custom actions albo custom helpers)
 // takie jak otwieranie strony, wyszukiwanie po numerze REGON, pobieranie komunikatów o błędach i nazwy firmy
-
-// każda metoda zwraca Promise, bo operacje te są asynchroniczne
-// i wymagają oczekiwania na zakończenie działań w przeglądarce
-// dzięki temu możemy korzystać z tych metod w naszych testach w sposób asynchroniczny
-// (typowe w testach end-to-end z Playwright)
-
-// regonPage to jest Page Object dla strony wyszukiwarki
-// To jest podobne do Page Object Model (POM) ale implementowane jako fixture w Playwright
-// dzięki temu możemy łatwo zarządzać interakcjami ze stroną w naszych testach
 
 // Rozszerzamy obiekt testu Playwright o naszą customową fiksturę regonPage
 // teraz w testach możemy używać test.regonPage do interakcji ze stroną wyszukiwarki
@@ -20,9 +11,6 @@
      // use to jest 'callback' 
      // ='funkcja zwrotna', która pozwala nam przekazać naszą fiksturę do testu
      // 'callback' bo wołana jest PÓŹNIEJ kiedy fikstura jest gotowa
-// używamy await przy operacjach na stronie, bo są asynchroniczne
-//   zapewnia to, że operacje zakończą się zanim przejdziemy dalej w kodzie testu
-//   to jest kluczowe dla stabilności testów end-to-end
 
 import { test as base, expect, Page } from '@playwright/test';
 
@@ -75,7 +63,7 @@ export { expect };
 
 // 1. Playwright startuje test 
 // 2. widzi że test potrzebuje `regonPage`
-// 3. --> uruchamia funkcję fikstury
+// 3. --> uruchamia funkcję fikstury (fixture)
 // 4. wywołujemy `use(regonPage)`
 // 5. Playwright wstrzykuje `regonPage` do testu
 // 6. Test może teraz wywoływać regonPage.open(), itd.
@@ -88,6 +76,5 @@ export { expect };
 // Test dostaje fiksturę jako zależność
 
 //  - Playwright zarządza cyklem życia fikstur
-//  - tworzy je przed testem i niszczy po teście
 //  - to pozwala na izolację testów i unikanie konfliktów między nimi
 
