@@ -1,3 +1,10 @@
+// Importuję test i expect z customowej fukstury (custom fixture)
+// zdefiniowanej w pliku regon.fixture.ts
+// Ta fikstura: 1. rozszerza standardową fiksturę Playwright 
+// 2. stronę regonPage z metodami do interakcji z aplikacją, 
+//    wstrzykuje ją do każdego testu 
+// 3. Enkapsuluje logikę: wyszukiwania wg REGON, odczytywania komunikatów błędów
+//   oraz odczytywania rezultatu: nazwy firmy, z wyników wyszukiwania 
 import { test, expect } from './fixtures/regon.fixture';
 
 // Dane testowe i test case'y dla funkcjonalności wyszukiwania podmiotów wg REGON
@@ -5,11 +12,19 @@ import { test, expect } from './fixtures/regon.fixture';
 // Dane są zgromadzone w tablicach obiektów, a testy iterują przez te tablice
 // To model data-driven testing.
 
+// poniżej: definicja test suite: grupuje wszystkie testy związane z wyszukiwaniem wg REGON
+// beforeEach przed każdym testem: 
+// - m.in. otwiera stronę wyszukiwania wg REGON
+                                
 test.describe('Wyszukiwanie podmiotów wg REGON – ', () => {
 
   test.beforeEach(async ({ regonPage }) => {
     await regonPage.open();
   });
+
+  // negativeCases, positiveCases: tablice obiektów z danymi testowymi
+  // pole expectedRegex - wyrażenie regularne do weryfikacji komunikatów błędów
+  // expectedCompanyRegex -  
 
   // ---------------------------
   // test case'y negatywne
